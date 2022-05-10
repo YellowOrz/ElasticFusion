@@ -15,6 +15,10 @@ MACRO(CUDA_COMPUTE_TARGET_FLAGS arch_bin arch_ptx cuda_nvcc_target_flags)
 	# Tell NVCC to add binaries for the specified GPUs
 	string(REGEX MATCHALL "[0-9()]+" ARCH_LIST "${ARCH_BIN_WITHOUT_DOTS}")
 	foreach(ARCH IN LISTS ARCH_LIST)
+		# https://blog.csdn.net/OTZ_2333/article/details/124692056
+		if(ARCH MATCHES "30")
+			continue()
+		endif()
 		if (ARCH MATCHES "([0-9]+)\\(([0-9]+)\\)")
 			# User explicitly specified PTX for the concrete BIN					
 			set(cuda_computer_target_flags_temp ${cuda_computer_target_flags_temp} -gencode arch=compute_${CMAKE_MATCH_2},code=sm_${CMAKE_MATCH_1})					

@@ -69,8 +69,11 @@ else()
   add_definitions(-Dlinux=1)
 endif()
 
-set(CMAKE_CXX_FLAGS ${ADDITIONAL_CMAKE_CXX_FLAGS} "-O3 -msse2 -msse3 -Wall -std=c++11")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -std=c++11")
+set(CMAKE_CXX_FLAGS ${ADDITIONAL_CMAKE_CXX_FLAGS} "-O3 -msse2 -msse3 -Wall -std=c++14")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -std=c++14")
+
+# https://github.com/mp3guy/ElasticFusion/issues/150
+set(CMAKE_CXX_STANDARD_LIBRARIES -ljpeg)
 
 add_executable(ElasticFusion 
                ${srcs}
@@ -90,6 +93,7 @@ target_link_libraries(ElasticFusion
                       ${SUITESPARSE_LIBRARIES}
                       ${BLAS_LIBRARIES}
                       ${LAPACK_LIBRARIES}
+                      ${CMAKE_CXX_STANDARD_LIBRARIES}
 )
 
 
