@@ -1,0 +1,3 @@
+[submodule "GPUTest/png_to_klg"]
+	path = GPUTest/png_to_klg
+	url = git@github.com:YellowOrz/png_to_klg.git

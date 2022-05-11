@@ -120,6 +120,12 @@ class GPUConfig
             rgbResMap["GeForce GTX 1070"] = std::pair<int, int>(256, 464);
             so3StepMap["GeForce GTX 1070"] = std::pair<int, int>(256, 48);
 
+            // https://github.com/mp3guy/ElasticFusion/issues/136
+            icpStepMap["NVIDIA GeForce GTX 1660 SUPER"] = std::pair<int, int>(256, 64);
+            rgbStepMap["NVIDIA GeForce GTX 1660 SUPER"] = std::pair<int, int>(128, 64);
+            rgbResMap["NVIDIA GeForce GTX 1660 SUPER"] = std::pair<int, int>(272, 448);
+            so3StepMap["NVIDIA GeForce GTX 1660 SUPER"] = std::pair<int, int>(32, 176);
+
             if(icpStepMap.find(dev) == icpStepMap.end())
             {
                 std::stringstream strs;
