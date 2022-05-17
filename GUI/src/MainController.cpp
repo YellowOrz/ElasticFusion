@@ -34,7 +34,7 @@ MainController::MainController(int argc, char * argv[])
     std::string calibrationFile;
     Parse::get().arg(argc, argv, "-cal", calibrationFile);
 
-    Resolution::getInstance(640, 480);
+
 
     if(calibrationFile.length())
     {
@@ -42,6 +42,7 @@ MainController::MainController(int argc, char * argv[])
     }
     else
     {
+        Resolution::getInstance(640, 480);
         Intrinsics::getInstance(528, 528, 320, 240);
     }
 
@@ -125,8 +126,8 @@ MainController::MainController(int argc, char * argv[])
 
     resizeStream = new Resize(Resolution::getInstance().width(),
                               Resolution::getInstance().height(),
-                              Resolution::getInstance().width() / 2,
-                              Resolution::getInstance().height() / 2);
+                              int(Resolution::getInstance().width() / 2),
+                              int(Resolution::getInstance().height() / 2));
 }
 
 MainController::~MainController()
@@ -164,14 +165,16 @@ void MainController::loadCalibration(const std::string & filename)
 
     assert(!file.eof());
 
+    int w, h;
     double fx, fy, cx, cy;
 
     std::getline(file, line);
 
-    int n = sscanf(line.c_str(), "%lg %lg %lg %lg", &fx, &fy, &cx, &cy);
+    int n = sscanf(line.c_str(), "%d %d %lg %lg %lg %lg", &w, &h, &fx, &fy, &cx, &cy);
 
-    assert(n == 4 && "Ooops, your calibration file should contain a single line with fx fy cx cy!");
+    assert(n == 6 && "Ooops, your calibration file should contain a single line with w h fx fy cx cy!");
 
+    Resolution::getInstance(w, h);
     Intrinsics::getInstance(fx, fy, cx, cy);
 }
 

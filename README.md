@@ -11,9 +11,14 @@ My modified version that Works
 |  Eigen   |   3.3.7    |           installed by apt           |
 | OpenGL   |  4.6.0     |                                      |
 
-- Note: relevant links are added where modified (if any) in comment form
+- Note: 
+  - relevant links are added where modified (if any) in comment form
+  - use the parameter `-cal` to load a camera calibration file specified as `w h fx fy cx cy`
+
 ---
+
 **Origin README**
+
 # ElasticFusion #
 
 Real-time dense visual SLAM system capable of capturing comprehensive dense globally consistent surfel-based maps of room scale environments explored using an RGB-D camera.
