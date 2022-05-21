@@ -14,6 +14,7 @@ My modified version that Works
 - Note: 
   - relevant links are added where modified (if any) in comment form
   - use the parameter `-cal` to load a camera calibration file specified as `w h fx fy cx cy`
+  - the saved model file is stored in the save path as the .klg file
 
 ---
 
